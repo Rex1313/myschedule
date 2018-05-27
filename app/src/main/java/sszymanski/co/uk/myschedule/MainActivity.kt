@@ -6,7 +6,8 @@ import com.roomorama.caldroid.CaldroidFragment
 import sszymanski.co.uk.myschedule.models.CleaningEvent
 
 class MainActivity : AppCompatActivity(), MainMVP.MainView, CalendarFragment.ClaendarFragmentInteractions {
-
+    lateinit var calendarFragment: CalendarFragment
+    lateinit var cleaningEventsFragment: CleaningEventsFragment
 
     lateinit var presenter: MainPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +16,11 @@ class MainActivity : AppCompatActivity(), MainMVP.MainView, CalendarFragment.Cla
         presenter = MainPresenter()
         val args = Bundle()
         args.putInt(CaldroidFragment.START_DAY_OF_WEEK, CaldroidFragment.MONDAY)
-        val calendarFragment = CalendarFragment()
+        calendarFragment = CalendarFragment()
+        cleaningEventsFragment = CleaningEventsFragment()
         calendarFragment.arguments = args
         supportFragmentManager.beginTransaction()?.replace(R.id.calendar_container, calendarFragment)?.commit()
+        supportFragmentManager.beginTransaction()?.replace(R.id.details_container, cleaningEventsFragment)?.commit()
     }
 
     override fun onDaySelected(cleaningEvents: List<CleaningEvent>) {
@@ -25,5 +28,6 @@ class MainActivity : AppCompatActivity(), MainMVP.MainView, CalendarFragment.Cla
         cleaningEvents.forEach({
             println("${it.personName}, ${it.roomName}")
         })
+        cleaningEventsFragment.loadEvents(cleaningEvents)
     }
 }

@@ -26,4 +26,11 @@ interface MainMVP {
         fun updateCalendarView(dateLong:Long)
         fun onDayEventsLoaded(cleaningEvents: List<CleaningEvent>)
     }
+
+    interface CleaningEventsView{
+
+    }
+    interface CleanintEventsPresenter{
+
+    }
 }
