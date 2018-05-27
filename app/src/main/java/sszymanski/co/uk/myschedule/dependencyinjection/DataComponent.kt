@@ -1,6 +1,7 @@
 package sszymanski.co.uk.myschedule.dependencyinjection
 
 import dagger.Component
+import sszymanski.co.uk.myschedule.AddNewCleaningPresenter
 import sszymanski.co.uk.myschedule.CalendarFragmentPresenter
 import sszymanski.co.uk.myschedule.MainPresenter
 import javax.inject.Singleton
@@ -13,5 +14,6 @@ import javax.inject.Singleton
 interface DataComponent {
     fun inject(calendarFragmentPresenter: CalendarFragmentPresenter)
     fun inject(mainPresenter: MainPresenter)
+    fun inject(addNewCleaningPresenter: AddNewCleaningPresenter)
 
 }

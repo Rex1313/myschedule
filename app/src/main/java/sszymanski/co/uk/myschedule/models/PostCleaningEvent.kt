@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName
  * Created by rex on 27/05/2018.
  */
 class PostCleaningEvent(
-        @SerializedName("room_id") val roomId: Int,
-        @SerializedName("person_id") val personId: Int,
-        @SerializedName("cleaning_date") val cleaningDate: String,
-        @SerializedName("cleaning_type") val cleaningType: String,
-        @SerializedName("notes") val notes: String
+        @SerializedName("room_id") var roomId: Int=0,
+        @SerializedName("person_id") var personId: Int=0,
+        @SerializedName("cleaning_date") var cleaningDate: Long=0,
+        @SerializedName("cleaning_type") var cleaningType: String="",
+        @SerializedName("notes") var notes: String=""
 ) {
 
 }

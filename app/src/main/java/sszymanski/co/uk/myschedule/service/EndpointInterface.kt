@@ -1,6 +1,7 @@
 package sszymanski.co.uk.myschedule.service
 
 import io.reactivex.Observable
+import org.json.JSONObject
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -25,6 +26,6 @@ interface EndpointInterface {
     fun getCleanings(@Query("from") from: String, @Query("to") to: String): Observable<List<CleaningEvent>>
 
     @POST("cleaning/add")
-    fun postNewCleaning(@Body cleaningModel: PostCleaningEvent): Observable<String>
+    fun postNewCleaning(@Body cleaningModel: PostCleaningEvent): Observable<JSONObject>
 
 }

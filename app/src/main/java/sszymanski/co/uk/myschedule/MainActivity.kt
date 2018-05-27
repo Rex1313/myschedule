@@ -3,9 +3,13 @@ package sszymanski.co.uk.myschedule
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.roomorama.caldroid.CaldroidFragment
+import sszymanski.co.uk.myschedule.Values.Companion.ARG_DATE
 import sszymanski.co.uk.myschedule.models.CleaningEvent
+import java.util.*
 
 class MainActivity : AppCompatActivity(), MainMVP.MainView, CalendarFragment.ClaendarFragmentInteractions {
+
+
     lateinit var calendarFragment: CalendarFragment
     lateinit var cleaningEventsFragment: CleaningEventsFragment
 
@@ -29,5 +33,14 @@ class MainActivity : AppCompatActivity(), MainMVP.MainView, CalendarFragment.Cla
             println("${it.personName}, ${it.roomName}")
         })
         cleaningEventsFragment.loadEvents(cleaningEvents)
+    }
+
+    override fun onCalendarFieldLongClicked(date: Date?) {
+        val addNewCleaningDialogFragment = AddNewCleaningDialogFragment()
+        val args = Bundle()
+        args.putLong(ARG_DATE, date!!.time)
+        addNewCleaningDialogFragment.arguments = args
+        addNewCleaningDialogFragment.show(supportFragmentManager, "add_new")
+
     }
 }

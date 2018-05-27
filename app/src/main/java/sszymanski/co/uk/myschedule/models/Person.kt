@@ -13,4 +13,8 @@ data class Person(
     @SerializedName("type") val type:String,
     @SerializedName("is_excluded") val isExcluded:Int) {
 
+
+    override fun toString(): String {
+        return personName
+    }
 }

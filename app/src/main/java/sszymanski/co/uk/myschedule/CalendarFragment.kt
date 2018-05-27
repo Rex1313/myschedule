@@ -40,6 +40,11 @@ class CalendarFragment : CaldroidFragment(), MainMVP.CalendarView {
     }
 
     var listener = object : CaldroidListener() {
+        override fun onLongClickDate(date: Date?, view: View?) {
+            super.onLongClickDate(date, view)
+            callback.onCalendarFieldLongClicked(date)
+        }
+
         override fun onSelectDate(date: Date?, view: View?) {
             println("date ${date.toString()} clicked")
             val localDate = LocalDateTime.fromDateFields(date)
@@ -54,5 +59,6 @@ class CalendarFragment : CaldroidFragment(), MainMVP.CalendarView {
 
     interface ClaendarFragmentInteractions {
         fun onDaySelected(cleaningEvents: List<CleaningEvent>)
+        fun onCalendarFieldLongClicked(date:Date?)
     }
 }

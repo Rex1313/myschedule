@@ -11,4 +11,8 @@ data class Room(
         @SerializedName("schedule") val schedule: Int,
         @SerializedName("big_cycle") val bigCycle: Int,
         @SerializedName("room_id") val roomId: Int) {
+
+    override fun toString(): String {
+        return roomName
+    }
 }
