@@ -3,11 +3,13 @@ package sszymanski.co.uk.myschedule
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.roomorama.caldroid.CaldroidFragment
+import org.joda.time.LocalDate
 import sszymanski.co.uk.myschedule.Values.Companion.ARG_DATE
 import sszymanski.co.uk.myschedule.models.CleaningEvent
+import java.time.chrono.ChronoLocalDate
 import java.util.*
 
-class MainActivity : AppCompatActivity(), MainMVP.MainView, CalendarFragment.ClaendarFragmentInteractions {
+class MainActivity : AppCompatActivity(), MainMVP.MainView, AddNewCleaningDialogFragment.AddNewCleaningDialogInteractions, CalendarFragment.ClaendarFragmentInteractions {
 
 
     lateinit var calendarFragment: CalendarFragment
@@ -27,12 +29,8 @@ class MainActivity : AppCompatActivity(), MainMVP.MainView, CalendarFragment.Cla
         supportFragmentManager.beginTransaction()?.replace(R.id.details_container, cleaningEventsFragment)?.commit()
     }
 
-    override fun onDaySelected(cleaningEvents: List<CleaningEvent>) {
-
-        cleaningEvents.forEach({
-            println("${it.personName}, ${it.roomName}")
-        })
-        cleaningEventsFragment.loadEvents(cleaningEvents)
+    override fun onDaySelected(localDate: LocalDate, cleaningEvents: List<CleaningEvent>) {
+        cleaningEventsFragment.loadEvents(localDate, cleaningEvents)
     }
 
     override fun onCalendarFieldLongClicked(date: Date?) {
@@ -43,4 +41,9 @@ class MainActivity : AppCompatActivity(), MainMVP.MainView, CalendarFragment.Cla
         addNewCleaningDialogFragment.show(supportFragmentManager, "add_new")
 
     }
+
+    override fun onNoteAdded() {
+
+    }
+
 }

@@ -5,17 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/header_recycler_size"
+        android:layout_marginStart="@dimen/margin_cardview"
+        android:layout_marginEnd="@dimen/margin_cardview"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textview_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="@dimen/header_text_size"
+            android:text="26 May 2018" />
+
+    </android.support.v7.widget.CardView>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_cleaning"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        />
 </android.support.constraint.ConstraintLayout>

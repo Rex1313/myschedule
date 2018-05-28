@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_cleaning_events.*
+import org.joda.time.LocalDate
 import sszymanski.co.uk.myschedule.models.CleaningEvent
 
 /**
@@ -22,8 +23,9 @@ class CleaningEventsFragment: Fragment(), MainMVP.CleaningEventsView {
         presenter = CleaningEventsFragmentPresenter(this)
     }
 
-    fun loadEvents(eventList: List<CleaningEvent>){
-        recyclerview_cleaning.adapter = CleaningEventsAdapter(eventList)
+    fun loadEvents(localDate: LocalDate, eventList: List<CleaningEvent>){
+        recyclerview_cleaning.adapter = CleaningEventsAdapter(activity, eventList)
+        textview_date.text = localDate.toString("dd MMM yyyy")
     }
 
     interface CleaningEventsInteractions{

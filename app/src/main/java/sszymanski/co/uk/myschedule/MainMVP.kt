@@ -1,10 +1,12 @@
 package sszymanski.co.uk.myschedule
 
+import android.graphics.drawable.Drawable
 import com.roomorama.caldroid.CaldroidFragment
 import org.joda.time.LocalDate
 import sszymanski.co.uk.myschedule.models.CleaningEvent
 import sszymanski.co.uk.myschedule.models.Person
 import sszymanski.co.uk.myschedule.models.Room
+import java.util.*
 
 /**
  * Created by rex on 27/05/2018.
@@ -26,7 +28,8 @@ interface MainMVP {
 
     interface CalendarView {
         fun updateCalendarView(dateLong:Long)
-        fun onDayEventsLoaded(cleaningEvents: List<CleaningEvent>)
+        fun updateMonthView(mapOfDates:Map<Date, Drawable>)
+        fun onDayEventsLoaded(localDate: LocalDate, cleaningEvents: List<CleaningEvent>)
     }
 
     interface CleaningEventsView{

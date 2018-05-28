@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview_main"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="@dimen/cardview_cleaning_height"
     android:layout_margin="@dimen/margin_cardview"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -16,42 +16,60 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@android:drawable/ic_menu_call"
+            android:id="@+id/imageview_status_icon"
+            android:layout_width="@dimen/imageview_status_stripe_width"
+            android:layout_height="match_parent"
+            android:background="@color/cleaning_due"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageview_person_icon"
+            android:layout_width="@dimen/imageview_person_size"
+            android:layout_height="@dimen/imageview_person_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageview_status_icon"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
         <TextView
             android:id="@+id/textview_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:textSize="@dimen/header_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            android:layout_marginTop="@dimen/margin_cardview"
+            android:layout_marginStart="@dimen/margin_cardview_big"
+            android:layout_marginBottom="@dimen/margin_cardview_big"
             android:text="..................."
-            />
+            android:textSize="@dimen/header_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imageview_person_icon"
+            app:layout_constraintTop_toTopOf="@+id/imageview_person_icon" />
 
         <TextView
             android:id="@+id/textview_room_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:textSize="@dimen/subheader_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textview_name"
+            android:layout_marginStart="@dimen/margin_cardview_big"
             android:text="..................."
-            />
+            android:textSize="@dimen/subheader_text_size"
+            app:layout_constraintStart_toEndOf="@+id/imageview_person_icon"
+            app:layout_constraintTop_toBottomOf="@+id/textview_name" />
+
+        <TextView
+            android:id="@+id/textview_notes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_cardview_big"
+            android:layout_marginEnd="@dimen/margin_cardview_big"
+            android:text="...................DKKDOSKDOSKDOSKDOSDKOSDKSODKSODKSODKSODKSODKSODKSOKDSO"
+            android:textSize="@dimen/subheader_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/imageview_person_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageview_person_icon"
+            app:layout_constraintTop_toBottomOf="@+id/textview_room_name" />
+
+
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
 

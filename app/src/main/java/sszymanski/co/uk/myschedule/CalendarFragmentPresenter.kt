@@ -1,5 +1,7 @@
 package sszymanski.co.uk.myschedule
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import com.roomorama.caldroid.CaldroidFragment
 import android.os.Bundle
 import android.view.View
@@ -21,7 +23,7 @@ import kotlin.collections.ArrayList
 /**
  * Created by rex on 27/05/2018.
  */
-class CalendarFragmentPresenter(val calendarView: MainMVP.CalendarView) : MainMVP.CalendarPresenter {
+class CalendarFragmentPresenter(val context: Context, val calendarView: MainMVP.CalendarView) : MainMVP.CalendarPresenter {
 
 
     @Inject
@@ -44,7 +46,7 @@ class CalendarFragmentPresenter(val calendarView: MainMVP.CalendarView) : MainMV
         endpointInterface.getCleanings(dateString, dateString).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    calendarView.onDayEventsLoaded(it)
+                    calendarView.onDayEventsLoaded(LocalDate.parse("$dayString-$monthString-${year.toString()}", dateFormat),it)
                 })
     }
 
@@ -57,12 +59,18 @@ class CalendarFragmentPresenter(val calendarView: MainMVP.CalendarView) : MainMV
         endpointInterface.getCleanings(from, to)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    it.forEach({ event ->
+                .subscribe({ events->
+                    val map:Map<Date, Drawable> = events.map { event->
                         val dateLong: Long = LocalDateTime.parse(event.cleaningDate).toDateTime(DateTimeZone.UTC).millis
-                        calendarView.updateCalendarView(dateLong)
-                        println(event.toString())
-                    })
+                        Date(dateLong) to IconGenerator.generateCalendarIcon(context, events.filter { it.cleaningDate.equals(event.cleaningDate) })
+                    }.toMap()
+                    calendarView.updateMonthView(map)
+//
+//                    it.forEach({ event ->
+//                        val dateLong: Long = LocalDateTime.parse(event.cleaningDate).toDateTime(DateTimeZone.UTC).millis
+//                        calendarView.updateCalendarView(dateLong)
+//                        println(event.toString())
+//                    })
                 })
     }
 

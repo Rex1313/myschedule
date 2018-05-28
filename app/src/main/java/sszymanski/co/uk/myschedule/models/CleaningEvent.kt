@@ -16,5 +16,6 @@ data class CleaningEvent(
         @SerializedName("person_name") val personName:String,
         @SerializedName("type") val personType:String,
         @SerializedName("is_excluded") val isExcluded:Int,
-        @SerializedName("room_name")val roomName:String) {
+        @SerializedName("room_name")val roomName:String,
+        @SerializedName("avatar") val avatarUrl:String) {
 }

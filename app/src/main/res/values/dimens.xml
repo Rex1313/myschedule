@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="header_text_size">16dp</dimen>
-    <dimen name="subheader_text_size">12dp</dimen>
+    <dimen name="header_text_size">20dp</dimen>
+    <dimen name="subheader_text_size">16dp</dimen>
     <dimen name="margin_cardview">8dp</dimen>
+    <dimen name="margin_cardview_big">16dp</dimen>
     <dimen name="dialog_add_width">300dp</dimen>
+    <dimen name="cardview_cleaning_height">100dp</dimen>
+    <dimen name="imageview_status_stripe_width">12dp</dimen>
+    <dimen name="imageview_person_size">100dp</dimen>
+    <dimen name="header_recycler_size">48dp</dimen>
 </resources>

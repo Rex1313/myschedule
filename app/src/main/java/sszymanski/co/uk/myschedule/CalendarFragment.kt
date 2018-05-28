@@ -6,23 +6,29 @@ import android.os.Bundle
 import android.view.View
 import com.roomorama.caldroid.CaldroidFragment
 import com.roomorama.caldroid.CaldroidListener
+import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 import sszymanski.co.uk.myschedule.models.CleaningEvent
-import java.time.LocalDate
 import java.util.*
 
 /**
  * Created by rex on 27/05/2018.
  */
 class CalendarFragment : CaldroidFragment(), MainMVP.CalendarView {
+
     lateinit var callback: CalendarFragment.ClaendarFragmentInteractions
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         callback = context as ClaendarFragmentInteractions
     }
 
-    override fun onDayEventsLoaded(cleaningEvents: List<CleaningEvent>) {
-        callback.onDaySelected(cleaningEvents)
+    override fun onDayEventsLoaded(localDate: LocalDate, cleaningEvents: List<CleaningEvent>) {
+        callback.onDaySelected(localDate, cleaningEvents)
+    }
+
+    override fun updateMonthView(mapOfDates: Map<Date, Drawable>) {
+        setBackgroundDrawableForDates(mapOfDates)
+        refreshView()
     }
 
     override fun updateCalendarView(dateLong: Long) {
@@ -35,7 +41,7 @@ class CalendarFragment : CaldroidFragment(), MainMVP.CalendarView {
     lateinit var presenter: MainMVP.CalendarPresenter
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter = CalendarFragmentPresenter(this)
+        presenter = CalendarFragmentPresenter(activity, this)
         caldroidListener = listener
     }
 
@@ -46,7 +52,6 @@ class CalendarFragment : CaldroidFragment(), MainMVP.CalendarView {
         }
 
         override fun onSelectDate(date: Date?, view: View?) {
-            println("date ${date.toString()} clicked")
             val localDate = LocalDateTime.fromDateFields(date)
             presenter.loadDayDetails(localDate.dayOfMonth, localDate.monthOfYear, localDate.year)
         }
@@ -58,7 +63,7 @@ class CalendarFragment : CaldroidFragment(), MainMVP.CalendarView {
     }
 
     interface ClaendarFragmentInteractions {
-        fun onDaySelected(cleaningEvents: List<CleaningEvent>)
-        fun onCalendarFieldLongClicked(date:Date?)
+        fun onDaySelected(localDateTime: LocalDate, cleaningEvents: List<CleaningEvent>)
+        fun onCalendarFieldLongClicked(date: Date?)
     }
 }

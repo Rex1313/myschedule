@@ -1,5 +1,6 @@
 package sszymanski.co.uk.myschedule
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.text.Editable
@@ -21,7 +22,12 @@ import java.util.*
  * Created by rex on 27/05/2018.
  */
 class AddNewCleaningDialogFragment : DialogFragment(), MainMVP.AddNewCleaningView {
+    lateinit var callback: AddNewCleaningDialogInteractions
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        callback = context as AddNewCleaningDialogInteractions
+    }
 
     lateinit var presenter: MainMVP.AddNewCleaningPresenter
     var date: Long = 0
@@ -88,5 +94,9 @@ class AddNewCleaningDialogFragment : DialogFragment(), MainMVP.AddNewCleaningVie
 
     override fun onNoteAdded() {
         dismiss()
+    }
+
+    interface  AddNewCleaningDialogInteractions {
+        fun onNoteAdded()
     }
 }

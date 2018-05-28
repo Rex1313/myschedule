@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#43cabd</color>
+    <color name="colorPrimaryDark">#3ea3ae</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="cleaning_passed">#40ff80</color>
+    <color name="cleaning_due">#ffb340</color>
+    <color name="cleaning_failed">#ff4340</color>
+    <color name="calendar_icon">#b987f2</color>
+
 </resources>
